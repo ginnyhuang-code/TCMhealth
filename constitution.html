@@ -256,23 +256,45 @@
   .result-header {
     text-align: center;
     padding: 3rem 2rem 2rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
   }
-  .result-main-badge {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem;
-    margin: 0 auto 1.2rem;
+  .result-header-bg {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.1;
   }
-  .result-label { font-size: 0.75rem; letter-spacing: 0.2em; color: var(--rose); margin-bottom: 0.4rem; }
+  .result-header-inner { position: relative; z-index: 1; }
+  .result-main-badge { display: none; }
+  .result-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
   .result-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--ink);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
-  .result-subtitle { font-size: 0.9rem; color: var(--ink-soft); }
+  .result-subtitle {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    background: var(--cream-dark);
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-top: 0.3rem;
+  }
 
   /* 分數列表 */
   .score-list {
@@ -286,16 +308,25 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.9rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border);
   }
   .score-item:last-child { border-bottom: none; }
-  .score-item.top { background: var(--rose-pale); }
-  .score-emoji { font-size: 1.2rem; width: 28px; text-align: center; }
-  .score-name { font-size: 0.9rem; color: var(--ink); flex: 1; font-family: 'Noto Serif TC', serif; }
-  .score-bar-wrap { width: 120px; }
+  .score-item.top {
+    background: var(--rose-pale);
+    border-left: 3px solid var(--rose);
+  }
+  .score-emoji { display: none; }
+  .score-name {
+    font-size: 0.95rem;
+    color: var(--ink);
+    flex: 1;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 500;
+  }
+  .score-bar-wrap { width: 130px; }
   .score-bar-bg { height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden; }
-  .score-bar-fill { height: 100%; border-radius: 3px; background: var(--rose-light); }
+  .score-bar-fill { height: 100%; border-radius: 3px; background: var(--border); }
   .score-bar-fill.top-fill { background: var(--rose); }
   .score-num { font-size: 0.82rem; color: var(--ink-soft); width: 36px; text-align: right; }
 
@@ -305,25 +336,27 @@
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
   .result-card h3 {
     font-family: 'Noto Serif TC', serif;
     font-size: 1.05rem;
-    color: var(--rose);
+    color: var(--ink);
     margin-bottom: 0.8rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
-  .result-card p { font-size: 0.9rem; color: var(--ink-mid); line-height: 2; }
+  .result-card p { font-size: 0.9rem; color: var(--ink-mid); line-height: 2.1; }
 
   /* 重測按鈕 */
   .retry-btn {
-    background: var(--cream);
-    color: var(--rose);
-    border: 1.5px solid var(--rose-light);
-    padding: 0.8rem 2.5rem;
+    background: var(--rose);
+    color: white;
+    border: none;
+    padding: 0.9rem 2.8rem;
     border-radius: 30px;
     font-size: 0.95rem;
     cursor: pointer;
@@ -331,8 +364,9 @@
     font-family: 'Noto Sans TC', sans-serif;
     display: block;
     margin: 0 auto 2rem;
+    box-shadow: 0 4px 16px rgba(196,112,74,0.25);
   }
-  .retry-btn:hover { background: var(--rose-pale); }
+  .retry-btn:hover { background: var(--rose-light); transform: translateY(-2px); }
 
   @media (max-width: 600px) {
     nav { padding: 0 1rem; }
@@ -358,7 +392,7 @@
 
 <!-- Header -->
 <div class="page-header">
-  <div class="eyebrow">王琦教授九種體質分類</div>
+  <div class="eyebrow">中醫體質測驗</div>
   <h1>了解你的體質</h1>
   <p>請依照近一年來的身體狀況作答，選擇最符合自己的選項，共 36 題，約需 5 分鐘。</p>
 </div>
@@ -843,10 +877,20 @@
 <!-- 結果頁 -->
 <div id="result-section">
   <div class="result-header">
-    <div class="result-main-badge" id="result-badge"></div>
-    <div class="result-label">你的主要體質</div>
-    <div class="result-title" id="result-title"></div>
-    <div class="result-subtitle" id="result-subtitle"></div>
+    <svg class="result-header-bg" width="200" height="200" viewBox="-100 -100 200 200">
+      <circle cx="0" cy="0" r="90" fill="none" stroke="#C49A3C" stroke-width="1" stroke-dasharray="5 4"/>
+      <circle cx="0" cy="0" r="75" fill="none" stroke="#7A9E7E" stroke-width="0.8"/>
+      <path d="M0,-75 A75,75 0 0,1 0,75 A37.5,37.5 0 0,1 0,0 A37.5,37.5 0 0,0 0,-75Z" fill="#7A9E7E"/>
+      <path d="M0,-75 A75,75 0 0,0 0,75 A37.5,37.5 0 0,0 0,0 A37.5,37.5 0 0,1 0,-75Z" fill="#C4704A"/>
+      <circle cx="0" cy="-37.5" r="16" fill="#FEFCF9"/>
+      <circle cx="0" cy="37.5" r="16" fill="#FEFCF9"/>
+    </svg>
+    <div class="result-header-inner">
+      <div class="result-main-badge" id="result-badge"></div>
+      <div class="result-label">你的主要體質</div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-subtitle" id="result-subtitle"></div>
+    </div>
   </div>
 
   <div class="score-list" id="score-list"></div>
@@ -866,11 +910,11 @@
 const constitutions = {
   pinghe:  { name:'平和質', emoji:'', color:'#7A9E7E', bg:'#E8F3EC', desc:'平和質是最理想的體質狀態，氣血陰陽調和，臟腑功能正常。你精力充沛、面色紅潤、睡眠良好、二便正常，對環境的適應能力強，不易生病。維持現有的健康習慣，飲食均衡、規律運動、作息正常，是保持平和體質的最佳方式。' },
   qixu:   { name:'氣虛質', emoji:'', color:'#C4704A', bg:'#FDF6F2', desc:'氣虛質的朋友常感疲倦乏力、說話聲音低弱、容易出汗，稍微活動就氣喘吁吁。這是因為元氣不足，臟腑功能偏弱。建議多食補氣食物如山藥、黃耆、紅棗、蓮子，避免過度勞累，保持充足睡眠，可適量進行緩和運動如太極、散步。' },
-  yangxu: { name:'陽虛質', emoji:'', color:'#6B8EC4', bg:'#EEF3FA', desc:'陽虛質的朋友怕冷、手腳冰涼，喜歡溫熱食物，精神不振，睡眠偏多。這是體內陽氣不足所致。建議多食溫陽食物如韭菜、薑、桂圓、核桃，注意保暖，避免生冷食物及寒涼環境，適合艾灸關元、命門等穴位。' },
+  yangxu: { name:'陽虛質', emoji:'', color:'#6B8EC4', bg:'#EEF3FA', desc:'陽虛質的朋友怕冷、手腳冰涼，喜歡溫熱食物，精神不振，睡眠偏多。這是體內陽氣不足所致。建議多食溫陽食物如韭菜、薑、桂圓、核桃，注意保暖，避免生冷食物及寒涼環境。' },
   yinxu:  { name:'陰虛質', emoji:'', color:'#C49A3C', bg:'#F5F0E8', desc:'陰虛質的朋友常感手腳心熱、口乾咽燥、失眠多夢、大便乾燥。這是體內陰液不足、虛火偏旺的表現。建議多食滋陰食物如百合、銀耳、梨、桑椹、黑芝麻，避免辛辣上火食物，保持心情平靜，規律作息。' },
-  tanshi: { name:'痰濕質', emoji:'', color:'#8B7A9C', bg:'#F5F2F8', desc:'痰濕質的朋友常感身體沉重、腹部肥滿、口黏膩、容易困倦。這是體內水濕代謝不良、痰濕積聚所致。建議清淡飲食，少食油膩甜食，多食健脾化濕食物如薏仁、冬瓜、白扁豆，加強有氧運動，避免久坐不動。' },
+  tanshi: { name:'痰濕質', emoji:'', color:'#8B7A9C', bg:'#F5F2F8', desc:'痰濕質的朋友常感身體沉重、腹部肥滿、口黏膩、容易困倦。這是體內水濕代謝不良、痰濕積聚所致。建議清淡飲食，少食油膩甜食，多食健脾化濕食物如薏仁、冬瓜、白扁豆，加強身體活動量，避免久坐不動。' },
   shire:  { name:'濕熱質', emoji:'', color:'#C47A3C', bg:'#FDF6F2', desc:'濕熱質的朋友容易臉部出油長痘、口苦口臭、大便黏膩不爽、小便偏黃。這是濕與熱互結於體內的表現。建議飲食清淡，少食辛辣油膩，多食清熱化濕食物如綠豆、苦瓜、薏仁，保持大便通暢，避免熬夜及飲酒。' },
-  xueyu:  { name:'血瘀質', emoji:'', color:'#A04060', bg:'#FAF0F4', desc:'血瘀質的朋友面色晦暗、皮膚容易出現瘀斑、身體有固定部位疼痛、嘴唇偏暗。這是體內血液運行不暢、瘀血阻滯所致。建議多食活血食物如山楂、黑木耳、玫瑰花、薑黃，規律運動促進血液循環，保持心情舒暢，避免久坐。' },
+  xueyu:  { name:'血瘀質', emoji:'', color:'#A04060', bg:'#FAF0F4', desc:'血瘀質的朋友面色晦暗、皮膚容易出現瘀斑、身體有固定部位疼痛、嘴唇偏暗。這是體內血液運行不暢、瘀血阻滯所致。建議適量食用活血食物如山楂、黑木耳、玫瑰花、薑黃，規律運動促進血液循環，保持心情舒暢，避免久坐。' },
   qiyu:   { name:'氣鬱質', emoji:'', color:'#7A8E6E', bg:'#F2F5EE', desc:'氣鬱質的朋友常感情緒鬱悶、多愁善感、容易焦慮，常有胸脅脹悶、嘆氣。這是肝氣鬱結、氣機不暢所致。建議多參與戶外活動，培養興趣愛好，多與人交流，可飲玫瑰花茶、佛手茶等疏肝解鬱，保持作息規律。' },
   tebing: { name:'特稟質', emoji:'', color:'#C4704A', bg:'#FDF6F2', desc:'特稟質（過敏體質）的朋友對環境適應能力較差，容易對花粉、食物、藥物等過敏，出現過敏性鼻炎、蕁麻疹、哮喘等。建議盡量遠離已知過敏原，飲食均衡，增強體質，可請中醫師針對個人情況調整體質。' },
 };
@@ -975,11 +1019,22 @@ function calculateResult() {
   }).join('');
   document.getElementById('score-list').innerHTML = scoreHTML;
 
-  // 體質說明
-  document.getElementById('result-desc').innerHTML = `
-    <h3>${mainInfo.emoji} 關於${mainInfo.name}</h3>
+  // 體質說明（主要 + 兼夾）
+  let descHTML = `
+    <h3>關於${mainInfo.name}<span style="font-size:0.78rem;color:var(--rose);font-weight:400;margin-left:0.5rem;">主要體質</span></h3>
     <p>${mainInfo.desc}</p>
   `;
+  if (secondary.length > 0) {
+    secondary.slice(0, 2).forEach(t => {
+      const info = constitutions[t];
+      descHTML += `
+        <hr style="border:none;border-top:1px solid var(--border);margin:1.2rem 0;">
+        <h3>關於${info.name}<span style="font-size:0.78rem;color:var(--ink-soft);font-weight:400;margin-left:0.5rem;">兼夾體質</span></h3>
+        <p>${info.desc}</p>
+      `;
+    });
+  }
+  document.getElementById('result-desc').innerHTML = descHTML;
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
