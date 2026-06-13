@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>體質調養 · 黃千容中醫師健康講堂</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C4704A;
+    --rose-light: #E8A882;
+    --rose-pale: #FDF6F2;
+    --sage: #7A9E7E;
+    --sage-light: #B8D4BA;
+    --sage-pale: #F2F8F2;
+    --cream: #FBF7F0;
+    --cream-dark: #F0E8D8;
+    --gold: #C49A3C;
+    --gold-light: #F5E6BB;
+    --ink: #3A2E22;
+    --ink-mid: #6B5A48;
+    --ink-soft: #9C8C7C;
+    --border: #E2D5C4;
+    --white: #FEFCF9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* Nav */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(58,46,34,0.05);
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--rose);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--rose-pale); color: var(--rose); }
+
+  /* Header */
+  .page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header svg {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .page-header-inner { position: relative; z-index: 1; }
+  .page-header .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .page-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .page-header p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+    line-height: 2;
+  }
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--rose);
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(196,112,74,0.25);
+  }
+  .header-cta:hover { background: var(--rose-light); transform: translateY(-2px); }
+
+  /* Main */
+  .main { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    line-height: 2;
+  }
+
+  /* 體質卡片 */
+  .constitution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.3rem;
+  }
+  .constitution-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.8rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .constitution-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--rose);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .constitution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(58,46,34,0.1);
+    border-color: var(--rose-light);
+  }
+  .constitution-card:hover::before { transform: scaleX(1); }
+
+  .card-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .card-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    background: var(--cream-dark);
+    color: var(--ink-mid);
+    border: 1px solid var(--border);
+  }
+  .card-link {
+    font-size: 0.82rem;
+    color: var(--rose);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* 說明區 */
+  .info-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .info-text { font-size: 0.88rem; color: var(--ink-mid); line-height: 2; }
+  .info-text strong { color: var(--rose); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.5rem;
+  }
+  .footer-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 2; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .page-header { padding: 2.5rem 1.5rem 2rem; }
+    .main { padding: 2rem 1rem 4rem; }
+    .constitution-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">黃千容中醫師 · 健康講堂</a>
+  <ul class="nav-links">
+    <li><a href="articles.html">衛教文章</a></li>
+    <li><a href="constitution_guide.html" class="active">體質調養</a></li>
+    <li><a href="rehab.html">養身運動</a></li>
+    <li><a href="faq.html">常見問答</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
+<div class="page-header">
+  <svg width="280" height="280" viewBox="-140 -140 280 280">
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#C49A3C" stroke-width="1" stroke-dasharray="6 4"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#7A9E7E" stroke-width="0.8"/>
+    <path d="M0,-110 A110,110 0 0,1 0,110 A55,55 0 0,1 0,0 A55,55 0 0,0 0,-110Z" fill="#7A9E7E"/>
+    <path d="M0,-110 A110,110 0 0,0 0,110 A55,55 0 0,0 0,0 A55,55 0 0,1 0,-110Z" fill="#C4704A"/>
+    <circle cx="0" cy="-55" r="22" fill="#FEFCF9"/>
+    <circle cx="0" cy="55" r="22" fill="#FEFCF9"/>
+    <circle cx="0" cy="-55" r="9" fill="#7A9E7E"/>
+    <circle cx="0" cy="55" r="9" fill="#C4704A"/>
+  </svg>
+  <div class="page-header-inner">
+    <div class="eyebrow">中醫體質調養</div>
+    <h1>找到適合你的調養方式</h1>
+    <p>每種體質都有其特性，了解自己的體質，才能選擇最適合的飲食、運動與生活習慣。</p>
+    <a href="constitution.html" class="header-cta">先測測你的體質 →</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 說明 -->
+  <div class="info-box">
+    <div class="info-icon">💡</div>
+    <div class="info-text">
+      <strong>還不確定自己是哪種體質？</strong>先完成體質測驗，測驗結果會直接帶你到對應的調養建議。
+      或是你也可以直接選擇你感興趣的體質類型來閱讀。
+    </div>
+  </div>
+
+  <!-- 體質卡片 -->
+  <div class="section-label">九種體質</div>
+  <div class="section-title">選擇你的體質類型</div>
+  <p class="section-desc">點擊任一體質，了解詳細的飲食宜忌、食療建議、運動與生活習慣指導。</p>
+
+  <div class="constitution-grid">
+
+    <a href="constitution_pinghe.html" class="constitution-card">
+      <div class="card-name">平和質</div>
+      <div class="card-desc">氣血陰陽調和，臟腑功能正常，是最理想的體質狀態。</div>
+      <div class="card-tags">
+        <span class="card-tag">精神飽滿</span>
+        <span class="card-tag">適應力強</span>
+        <span class="card-tag">不易生病</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_qixu.html" class="constitution-card">
+      <div class="card-name">氣虛質</div>
+      <div class="card-desc">元氣不足，容易疲倦乏力，說話聲音低弱，稍動即喘。</div>
+      <div class="card-tags">
+        <span class="card-tag">容易疲倦</span>
+        <span class="card-tag">氣短</span>
+        <span class="card-tag">容易感冒</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_yangxu.html" class="constitution-card">
+      <div class="card-name">陽虛質</div>
+      <div class="card-desc">體內陽氣不足，怕冷、手腳冰涼，喜歡溫熱食物。</div>
+      <div class="card-tags">
+        <span class="card-tag">怕冷</span>
+        <span class="card-tag">手腳冰涼</span>
+        <span class="card-tag">腰膝痠軟</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_yinxu.html" class="constitution-card">
+      <div class="card-name">陰虛質</div>
+      <div class="card-desc">體內陰液不足，虛火偏旺，常感手腳心熱、口乾咽燥。</div>
+      <div class="card-tags">
+        <span class="card-tag">手腳心熱</span>
+        <span class="card-tag">口乾</span>
+        <span class="card-tag">失眠多夢</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_tanshi.html" class="constitution-card">
+      <div class="card-name">痰濕質</div>
+      <div class="card-desc">體內水濕代謝不良，常感身體沉重、腹部肥滿、口黏膩。</div>
+      <div class="card-tags">
+        <span class="card-tag">身體沉重</span>
+        <span class="card-tag">容易困倦</span>
+        <span class="card-tag">痰多</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_shire.html" class="constitution-card">
+      <div class="card-name">濕熱質</div>
+      <div class="card-desc">濕與熱互結於體內，容易長痘、口苦口臭、大便黏膩。</div>
+      <div class="card-tags">
+        <span class="card-tag">容易長痘</span>
+        <span class="card-tag">口苦</span>
+        <span class="card-tag">大便黏膩</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_xueyu.html" class="constitution-card">
+      <div class="card-name">血瘀質</div>
+      <div class="card-desc">體內血液運行不暢，面色晦暗，皮膚容易瘀青，有固定部位疼痛。</div>
+      <div class="card-tags">
+        <span class="card-tag">臉色暗沉</span>
+        <span class="card-tag">容易瘀青</span>
+        <span class="card-tag">固定疼痛</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_qiyu.html" class="constitution-card">
+      <div class="card-name">氣鬱質</div>
+      <div class="card-desc">肝氣鬱結，氣機不暢，常感情緒鬱悶、多愁善感、容易焦慮。</div>
+      <div class="card-tags">
+        <span class="card-tag">情緒鬱悶</span>
+        <span class="card-tag">容易焦慮</span>
+        <span class="card-tag">胸悶嘆氣</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+    <a href="constitution_tebing.html" class="constitution-card">
+      <div class="card-name">特稟質</div>
+      <div class="card-desc">過敏體質，對環境適應力差，容易過敏性鼻炎、蕁麻疹、哮喘。</div>
+      <div class="card-tags">
+        <span class="card-tag">過敏鼻炎</span>
+        <span class="card-tag">皮膚過敏</span>
+        <span class="card-tag">氣喘</span>
+      </div>
+      <div class="card-link">了解調養方式 →</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">黃千容中醫師 · 健康講堂</div>
+  <div class="footer-desc">本網站內容僅供衛教參考，不構成醫療建議<br>身體有狀況請諮詢專業醫師</div>
+</footer>
+
+</body>
+</html>
