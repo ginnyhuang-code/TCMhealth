@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>衛教文章 · 黃千容中醫師健康講堂</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C4704A;
+    --rose-light: #E8A882;
+    --rose-pale: #FDF6F2;
+    --sage: #7A9E7E;
+    --sage-light: #B8D4BA;
+    --sage-pale: #F2F8F2;
+    --cream: #FBF7F0;
+    --cream-dark: #F0E8D8;
+    --gold: #C49A3C;
+    --gold-light: #F5E6BB;
+    --ink: #3A2E22;
+    --ink-mid: #6B5A48;
+    --ink-soft: #9C8C7C;
+    --border: #E2D5C4;
+    --white: #FEFCF9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* Nav */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(58,46,34,0.05);
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--rose);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--rose-pale); color: var(--rose); }
+
+  /* Header */
+  .page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2.5rem 2.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .page-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .page-header p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+
+  /* Main */
+  .main { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+  /* 系統分類區塊 */
+  .system-section { margin-bottom: 3rem; }
+
+  .system-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .system-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .system-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .system-count {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-left: auto;
+  }
+
+  /* 文章標籤列 */
+  .topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .topic-tag {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--ink-mid);
+    font-size: 0.88rem;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .topic-tag:hover {
+    background: var(--rose-pale);
+    border-color: var(--rose-light);
+    color: var(--rose);
+  }
+  .topic-tag.coming-soon {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .topic-tag.coming-soon:hover {
+    background: var(--white);
+    border-color: var(--border);
+    color: var(--ink-mid);
+  }
+
+  /* 即將推出提示 */
+  .coming-notice {
+    background: var(--gold-light);
+    border: 1px solid #D4B86A;
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    font-size: 0.85rem;
+    color: #7A5A10;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.5rem;
+  }
+  .footer-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 2; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .page-header { padding: 2.5rem 1.5rem 2rem; }
+    .main { padding: 2rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">黃千容中醫師 · 健康講堂</a>
+  <ul class="nav-links">
+    <li><a href="articles.html" class="active">衛教文章</a></li>
+    <li><a href="constitution_guide.html">體質調養</a></li>
+    <li><a href="rehab.html">養身運動</a></li>
+    <li><a href="faq.html">常見問答</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">系統性症狀分類</div>
+  <h1>衛教文章</h1>
+  <p>依症狀系統分類，找到你想了解的健康主題，讓中醫知識更貼近你的生活。</p>
+</div>
+
+<div class="main">
+
+  <div class="coming-notice">
+    📝 文章陸續更新中，歡迎定期回來查看新內容。
+  </div>
+
+  <!-- 神經系統 -->
+  <div class="system-section" id="neuro">
+    <div class="system-header">
+      <div class="system-icon" style="background:#EEF3FA;">🧠</div>
+      <div class="system-name">神經系統</div>
+      <div class="system-count">4 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">偏頭痛</span>
+      <span class="topic-tag coming-soon">頭暈</span>
+      <span class="topic-tag coming-soon">失眠</span>
+      <span class="topic-tag coming-soon">自律神經失調</span>
+    </div>
+  </div>
+
+  <!-- 消化系統 -->
+  <div class="system-section" id="digest">
+    <div class="system-header">
+      <div class="system-icon" style="background:#F2F8F2;">🌿</div>
+      <div class="system-name">消化系統</div>
+      <div class="system-count">4 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">胃食道逆流</span>
+      <span class="topic-tag coming-soon">脹氣</span>
+      <span class="topic-tag coming-soon">便秘</span>
+      <span class="topic-tag coming-soon">腹瀉</span>
+    </div>
+  </div>
+
+  <!-- 呼吸系統 -->
+  <div class="system-section" id="resp">
+    <div class="system-header">
+      <div class="system-icon" style="background:#F2F8F2;">🌬️</div>
+      <div class="system-name">呼吸系統</div>
+      <div class="system-count">3 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">過敏性鼻炎</span>
+      <span class="topic-tag coming-soon">氣喘</span>
+      <span class="topic-tag coming-soon">慢性咳嗽</span>
+    </div>
+  </div>
+
+  <!-- 婦科系統 -->
+  <div class="system-section" id="gyne">
+    <div class="system-header">
+      <div class="system-icon" style="background:#FDF6F2;">🌸</div>
+      <div class="system-name">婦科系統</div>
+      <div class="system-count">4 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">經痛</span>
+      <span class="topic-tag coming-soon">月經失調</span>
+      <span class="topic-tag coming-soon">更年期不適</span>
+      <span class="topic-tag coming-soon">子宮頸發炎</span>
+    </div>
+  </div>
+
+  <!-- 骨骼肌肉 -->
+  <div class="system-section" id="musculo">
+    <div class="system-header">
+      <div class="system-icon" style="background:#F5F0E8;">🦴</div>
+      <div class="system-name">骨骼肌肉</div>
+      <div class="system-count">5 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">顳顎關節障礙</span>
+      <span class="topic-tag coming-soon">落枕</span>
+      <span class="topic-tag coming-soon">頸肩痠痛</span>
+      <span class="topic-tag coming-soon">腰痛</span>
+      <span class="topic-tag coming-soon">膝關節痛</span>
+    </div>
+  </div>
+
+  <!-- 皮膚 -->
+  <div class="system-section" id="skin">
+    <div class="system-header">
+      <div class="system-icon" style="background:#FDF6F2;">✨</div>
+      <div class="system-name">皮膚</div>
+      <div class="system-count">4 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">異位性皮膚炎</span>
+      <span class="topic-tag coming-soon">蕁麻疹</span>
+      <span class="topic-tag coming-soon">痘痘</span>
+      <span class="topic-tag coming-soon">濕疹</span>
+    </div>
+  </div>
+
+  <!-- 兒科 -->
+  <div class="system-section" id="pedia">
+    <div class="system-header">
+      <div class="system-icon" style="background:#F2F8F2;">🌱</div>
+      <div class="system-name">兒科</div>
+      <div class="system-count">4 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">過敏體質</span>
+      <span class="topic-tag coming-soon">腦性麻痺</span>
+      <span class="topic-tag coming-soon">自閉症</span>
+      <span class="topic-tag coming-soon">發展遲緩</span>
+    </div>
+  </div>
+
+  <!-- 腫瘤輔助 -->
+  <div class="system-section" id="onco">
+    <div class="system-header">
+      <div class="system-icon" style="background:#FDF6F2;">💛</div>
+      <div class="system-name">腫瘤輔助</div>
+      <div class="system-count">2 個主題</div>
+    </div>
+    <div class="topic-list">
+      <span class="topic-tag coming-soon">化療副作用調理</span>
+      <span class="topic-tag coming-soon">放療副作用調理</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">黃千容中醫師 · 健康講堂</div>
+  <div class="footer-desc">本網站內容僅供衛教參考，不構成醫療建議<br>身體有狀況請諮詢專業醫師</div>
+</footer>
+
+</body>
+</html>
