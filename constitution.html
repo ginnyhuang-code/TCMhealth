@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>體質調養 · 黃千容中醫師健康講堂</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C4704A;
+    --rose-light: #E8A882;
+    --rose-pale: #FDF6F2;
+    --sage: #7A9E7E;
+    --sage-light: #B8D4BA;
+    --sage-pale: #F2F8F2;
+    --cream: #FBF7F0;
+    --cream-dark: #F0E8D8;
+    --gold: #C49A3C;
+    --gold-light: #F5E6BB;
+    --ink: #3A2E22;
+    --ink-mid: #6B5A48;
+    --ink-soft: #9C8C7C;
+    --border: #E2D5C4;
+    --white: #FEFCF9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* Nav */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(58,46,34,0.05);
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--rose);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--rose-pale); color: var(--rose); }
+
+  /* Header */
+  .page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2.5rem 2.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 0.6rem;
+  }
+  .page-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .page-header p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+
+  /* 進度條 */
+  .progress-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .progress-inner { max-width: 700px; margin: 0 auto; }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar-bg {
+    height: 6px;
+    background: var(--cream-dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--rose-light));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* 主體 */
+  .main { max-width: 700px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+  /* 體質區塊 */
+  .constitution-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .section-head {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--cream);
+  }
+  .section-badge {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-subtitle {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.1rem;
+  }
+
+  /* 題目 */
+  .question {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .question:last-child { border-bottom: none; }
+  .question-text {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .options {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin: 0.5rem 0;
+  }
+  .options::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: calc(10% + 14px);
+    right: calc(10% + 14px);
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .option-label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+  }
+  .option-label input { display: none; }
+  .option-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--white);
+    margin: 0 auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+  .option-text {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    display: block;
+    line-height: 1.3;
+    transition: all 0.2s;
+  }
+  .option-label:hover .option-circle {
+    border-color: var(--rose-light);
+    color: var(--rose);
+  }
+  .option-label input:checked + .option-circle {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: white;
+  }
+  .option-label input:checked ~ .option-text {
+    color: var(--rose);
+    font-weight: 500;
+  }
+
+  /* 送出按鈕 */
+  .submit-wrap { text-align: center; margin-top: 2rem; }
+  .submit-btn {
+    background: var(--rose);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(196,112,74,0.3);
+  }
+  .submit-btn:hover { background: var(--rose-light); transform: translateY(-2px); }
+  .submit-note { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.8rem; }
+
+  /* 結果頁 */
+  #result-section { display: none; }
+  .result-header {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+  }
+  .result-main-badge {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.2rem;
+  }
+  .result-label { font-size: 0.75rem; letter-spacing: 0.2em; color: var(--rose); margin-bottom: 0.4rem; }
+  .result-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .result-subtitle { font-size: 0.9rem; color: var(--ink-soft); }
+
+  /* 分數列表 */
+  .score-list {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-item:last-child { border-bottom: none; }
+  .score-item.top { background: var(--rose-pale); }
+  .score-emoji { font-size: 1.2rem; width: 28px; text-align: center; }
+  .score-name { font-size: 0.9rem; color: var(--ink); flex: 1; font-family: 'Noto Serif TC', serif; }
+  .score-bar-wrap { width: 120px; }
+  .score-bar-bg { height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; background: var(--rose-light); }
+  .score-bar-fill.top-fill { background: var(--rose); }
+  .score-num { font-size: 0.82rem; color: var(--ink-soft); width: 36px; text-align: right; }
+
+  /* 體質說明卡 */
+  .result-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .result-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    color: var(--rose);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .result-card p { font-size: 0.9rem; color: var(--ink-mid); line-height: 2; }
+
+  /* 重測按鈕 */
+  .retry-btn {
+    background: var(--cream);
+    color: var(--rose);
+    border: 1.5px solid var(--rose-light);
+    padding: 0.8rem 2.5rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Noto Sans TC', sans-serif;
+    display: block;
+    margin: 0 auto 2rem;
+  }
+  .retry-btn:hover { background: var(--rose-pale); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .progress-wrap { padding: 1rem 1.2rem; }
+    .main { padding: 1.5rem 1rem 4rem; }
+    .options { gap: 0.4rem; }
+    .option-btn { font-size: 0.75rem; padding: 0.45rem 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">黃千容中醫師 · 健康講堂</a>
+  <ul class="nav-links">
+    <li><a href="articles.html">衛教文章</a></li>
+    <li><a href="constitution.html" class="active">體質調養</a></li>
+    <li><a href="rehab.html">養身運動</a></li>
+    <li><a href="faq.html">常見問答</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="eyebrow">王琦教授九種體質分類</div>
+  <h1>了解你的體質</h1>
+  <p>請依照近一年來的身體狀況作答，選擇最符合自己的選項，共 36 題，約需 5 分鐘。</p>
+</div>
+
+<!-- 進度條 -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-info">
+      <span id="progress-text">0 / 36 題</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 問卷 -->
+<div class="main">
+<form id="quiz-form">
+<div id="quiz-section">
+
+  <!-- 1. 平和質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">一般狀態</div>
+        <div class="section-subtitle">整體精力與適應力</div>
+      </div>
+    </div>
+
+    <div class="question" data-type="pinghe">
+      <div class="question-text">1. 你精神飽滿嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q1" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="pinghe">
+      <div class="question-text">2. 你容易適應天氣和環境的變化嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q2" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q2" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q2" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q2" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q2" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="pinghe">
+      <div class="question-text">3. 你身體經常不舒服嗎？（反向題）</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q3" value="5"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="4"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="2"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="1"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="pinghe">
+      <div class="question-text">4. 你的臉色有光澤嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q4" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q4" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q4" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q4" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q4" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 氣虛質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">氣力與疲勞</div>
+        <div class="section-subtitle">氣虛體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="qixu">
+      <div class="question-text">5. 你經常感到疲倦嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q5" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qixu">
+      <div class="question-text">6. 你說話聲音很小、覺得沒有力氣嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q6" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q6" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q6" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q6" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q6" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qixu">
+      <div class="question-text">7. 你容易心慌、心跳加速嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q7" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q7" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q7" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q7" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q7" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qixu">
+      <div class="question-text">8. 你容易頭暈或站起時眩暈嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q8" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q8" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q8" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q8" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q8" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 陽虛質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">怕冷與保暖</div>
+        <div class="section-subtitle">陽虛體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="yangxu">
+      <div class="question-text">9. 你的手腳容易冰冷嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q9" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q9" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q9" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q9" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q9" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yangxu">
+      <div class="question-text">10. 你比別人怕冷、不喜歡吹冷氣嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q10" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q10" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q10" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q10" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q10" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yangxu">
+      <div class="question-text">11. 你的腹部、背部或腰膝部怕冷嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q11" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q11" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q11" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q11" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q11" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yangxu">
+      <div class="question-text">12. 你吃冰或喝冷飲會感覺不舒服或腹瀉嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q12" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q12" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q12" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q12" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q12" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 陰虛質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">燥熱與津液</div>
+        <div class="section-subtitle">陰虛體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="yinxu">
+      <div class="question-text">13. 你的手掌、腳掌會感覺發熱嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q13" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q13" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q13" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q13" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q13" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yinxu">
+      <div class="question-text">14. 你的身體或臉上會有發熱感嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q14" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q14" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q14" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q14" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q14" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yinxu">
+      <div class="question-text">15. 你的皮膚或嘴唇會乾燥嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q15" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q15" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q15" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q15" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q15" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="yinxu">
+      <div class="question-text">16. 你會盜汗（夜間出汗）嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q16" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q16" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q16" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q16" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q16" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 痰濕質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">痰濕與體重</div>
+        <div class="section-subtitle">痰濕體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="tanshi">
+      <div class="question-text">17. 你會有胸悶或腹脹嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q17" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q17" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q17" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q17" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q17" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tanshi">
+      <div class="question-text">18. 你身體偏胖，尤其腹部肥滿嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q18" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q18" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q18" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q18" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q18" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tanshi">
+      <div class="question-text">19. 你額部容易出油嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q19" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q19" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q19" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q19" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q19" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tanshi">
+      <div class="question-text">20. 你喉嚨容易卡痰或經常需要吐痰嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q20" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q20" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q20" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q20" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q20" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 濕熱質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">濕熱與皮膚</div>
+        <div class="section-subtitle">濕熱體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="shire">
+      <div class="question-text">21. 你臉上容易長痘痘或粉刺嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q21" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q21" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q21" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q21" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q21" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="shire">
+      <div class="question-text">22. 你感到口苦或口臭嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q22" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q22" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q22" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q22" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q22" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="shire">
+      <div class="question-text">23. 你大便會有黏膩或上不乾淨的感覺嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q23" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q23" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q23" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q23" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q23" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="shire">
+      <div class="question-text">24. 你小便會有灼熱感或小便顏色偏深嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q24" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q24" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q24" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q24" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q24" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 血瘀質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">血液循環</div>
+        <div class="section-subtitle">血瘀體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="xueyu">
+      <div class="question-text">25. 你的皮膚會容易瘀青嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q25" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q25" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q25" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q25" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q25" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="xueyu">
+      <div class="question-text">26. 你的嘴唇顏色偏暗嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q26" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q26" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q26" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q26" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q26" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="xueyu">
+      <div class="question-text">27. 你身上有固定部位的疼痛嗎？(如頭痛、小腿痛等)</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q27" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q27" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q27" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q27" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q27" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="xueyu">
+      <div class="question-text">28. 你的臉色較暗或容易長斑嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q28" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q28" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q28" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q28" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q28" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 氣鬱質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">情緒與壓力</div>
+        <div class="section-subtitle">氣鬱體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="qiyu">
+      <div class="question-text">29. 你感到悶悶不樂、情緒低落嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q29" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q29" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q29" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q29" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q29" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qiyu">
+      <div class="question-text">30. 你容易緊張焦慮嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q30" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q30" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q30" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q30" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q30" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qiyu">
+      <div class="question-text">31. 你經常感到胸悶或脇肋脹滿 / 妳月經前會乳房脹痛嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q31" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q31" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q31" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q31" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q31" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="qiyu">
+      <div class="question-text">32. 你的咽喉會有異物感，卻吞不下去的感覺嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q32" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q32" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q32" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q32" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q32" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. 特稟質 (4題) -->
+  <div class="constitution-section">
+    <div class="section-head">
+      <div>
+        <div class="section-title">過敏與特殊反應</div>
+        <div class="section-subtitle">特稟體質相關</div>
+      </div>
+    </div>
+    <div class="question" data-type="tebing">
+      <div class="question-text">33. 你早上起床容易打噴嚏嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q33" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q33" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q33" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q33" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q33" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tebing">
+      <div class="question-text">34. 你經常會鼻塞或流鼻涕嗎(沒有感冒時)？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q34" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q34" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q34" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q34" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q34" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tebing">
+      <div class="question-text">35. 季節變化、溫差大時，你會咳嗽或氣喘發作嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q35" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q35" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q35" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q35" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q35" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+    <div class="question" data-type="tebing">
+      <div class="question-text">36. 你皮膚容易起蕁麻疹嗎？</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q36" value="1"><span class="option-circle">0</span><span class="option-text">沒有</span></label>
+        <label class="option-label"><input type="radio" name="q36" value="2"><span class="option-circle">1</span><span class="option-text">很少</span></label>
+        <label class="option-label"><input type="radio" name="q36" value="3"><span class="option-circle">2</span><span class="option-text">有時候</span></label>
+        <label class="option-label"><input type="radio" name="q36" value="4"><span class="option-circle">3</span><span class="option-text">經常</span></label>
+        <label class="option-label"><input type="radio" name="q36" value="5"><span class="option-circle">4</span><span class="option-text">總是</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-wrap">
+    <button type="button" class="submit-btn" onclick="calculateResult()">查看我的體質結果</button>
+    <p class="submit-note">請確認所有題目都已作答</p>
+  </div>
+
+</div>
+</form>
+
+<!-- 結果頁 -->
+<div id="result-section">
+  <div class="result-header">
+    <div class="result-main-badge" id="result-badge"></div>
+    <div class="result-label">你的主要體質</div>
+    <div class="result-title" id="result-title"></div>
+    <div class="result-subtitle" id="result-subtitle"></div>
+  </div>
+
+  <div class="score-list" id="score-list"></div>
+
+  <div class="result-card" id="result-desc"></div>
+
+  <div style="background:var(--rose-pale);border:1px solid var(--rose-light);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--ink-mid);line-height:2;">
+    ⚕️ 本測驗結果僅供參考，體質判斷需由中醫師望聞問切後綜合評估。如需進一步調養建議，歡迎至診間諮詢。
+  </div>
+
+  <button class="retry-btn" onclick="resetQuiz()">重新測驗</button>
+</div>
+
+</div><!-- /main -->
+
+<script>
+const constitutions = {
+  pinghe:  { name:'平和質', emoji:'🌿', color:'#7A9E7E', bg:'#E8F3EC', desc:'平和質是最理想的體質狀態，氣血陰陽調和，臟腑功能正常。你精力充沛、面色紅潤、睡眠良好、二便正常，對環境的適應能力強，不易生病。維持現有的健康習慣，飲食均衡、規律運動、作息正常，是保持平和體質的最佳方式。' },
+  qixu:   { name:'氣虛質', emoji:'💨', color:'#C4704A', bg:'#FDF6F2', desc:'氣虛質的朋友常感疲倦乏力、說話聲音低弱、容易出汗，稍微活動就氣喘吁吁。這是因為元氣不足，臟腑功能偏弱。建議多食補氣食物如山藥、黃耆、紅棗、雞肉，避免過度勞累，保持充足睡眠，可適量進行緩和運動如太極、散步。' },
+  yangxu: { name:'陽虛質', emoji:'❄️', color:'#6B8EC4', bg:'#EEF3FA', desc:'陽虛質的朋友怕冷、手腳冰涼，喜歡溫熱食物，精神不振，睡眠偏多。這是體內陽氣不足所致。建議多食溫陽食物如羊肉、韭菜、薑、桂圓，注意保暖，避免生冷食物及寒涼環境，適合艾灸關元、命門等穴位。' },
+  yinxu:  { name:'陰虛質', emoji:'💧', color:'#C49A3C', bg:'#F5F0E8', desc:'陰虛質的朋友常感手腳心熱、口乾咽燥、失眠多夢、大便乾燥。這是體內陰液不足、虛火偏旺的表現。建議多食滋陰食物如百合、銀耳、梨、豬皮、鴨肉，避免辛辣上火食物，保持心情平靜，規律作息。' },
+  tanshi: { name:'痰濕質', emoji:'🌧️', color:'#8B7A9C', bg:'#F5F2F8', desc:'痰濕質的朋友常感身體沉重、腹部肥滿、口黏膩、容易困倦。這是體內水濕代謝不良、痰濕積聚所致。建議清淡飲食，少食油膩甜食，多食健脾化濕食物如薏仁、冬瓜、白扁豆，加強有氧運動，避免久坐不動。' },
+  shire:  { name:'濕熱質', emoji:'🔥', color:'#C47A3C', bg:'#FDF6F2', desc:'濕熱質的朋友容易臉部出油長痘、口苦口臭、大便黏膩不爽、小便偏黃。這是濕與熱互結於體內的表現。建議飲食清淡，少食辛辣油膩，多食清熱化濕食物如綠豆、苦瓜、薏仁，保持大便通暢，避免熬夜及飲酒。' },
+  xueyu:  { name:'血瘀質', emoji:'🌺', color:'#A04060', bg:'#FAF0F4', desc:'血瘀質的朋友面色晦暗、皮膚容易出現瘀斑、身體有固定部位疼痛、嘴唇偏暗。這是體內血液運行不暢、瘀血阻滯所致。建議多食活血食物如山楂、黑木耳、玫瑰花，規律運動促進血液循環，保持心情舒暢，避免久坐。' },
+  qiyu:   { name:'氣鬱質', emoji:'🌀', color:'#7A8E6E', bg:'#F2F5EE', desc:'氣鬱質的朋友常感情緒鬱悶、多愁善感、容易焦慮，常有胸脅脹悶、嘆氣。這是肝氣鬱結、氣機不暢所致。建議多參與戶外活動，培養興趣愛好，多與人交流，可飲玫瑰花茶、佛手茶等疏肝解鬱，保持作息規律。' },
+  tebing: { name:'特稟質', emoji:'🌸', color:'#C4704A', bg:'#FDF6F2', desc:'特稟質（過敏體質）的朋友對環境適應能力較差，容易對花粉、食物、藥物等過敏，出現過敏性鼻炎、蕁麻疹、哮喘等。建議盡量遠離已知過敏原，飲食均衡，增強體質，可請中醫師針對個人情況調整體質。' },
+};
+
+const types = ['pinghe','qixu','yangxu','yinxu','tanshi','shire','xueyu','qiyu','tebing'];
+const qMap = {
+  q1:'pinghe',q2:'pinghe',q3:'pinghe',q4:'pinghe',
+  q5:'qixu',q6:'qixu',q7:'qixu',q8:'qixu',
+  q9:'yangxu',q10:'yangxu',q11:'yangxu',q12:'yangxu',
+  q13:'yinxu',q14:'yinxu',q15:'yinxu',q16:'yinxu',
+  q17:'tanshi',q18:'tanshi',q19:'tanshi',q20:'tanshi',
+  q21:'shire',q22:'shire',q23:'shire',q24:'shire',
+  q25:'xueyu',q26:'xueyu',q27:'xueyu',q28:'xueyu',
+  q29:'qiyu',q30:'qiyu',q31:'qiyu',q32:'qiyu',
+  q33:'tebing',q34:'tebing',q35:'tebing',q36:'tebing',
+};
+
+// 進度追蹤
+document.querySelectorAll('input[type=radio]').forEach(r => {
+  r.addEventListener('change', updateProgress);
+});
+
+function updateProgress() {
+  const total = 36;
+  const answered = new Set();
+  document.querySelectorAll('input[type=radio]:checked').forEach(r => {
+    answered.add(r.name);
+  });
+  const count = answered.size;
+  const pct = Math.round(count / total * 100);
+  document.getElementById('progress-text').textContent = count + ' / ' + total + ' 題';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function calculateResult() {
+  // 檢查是否全部作答
+  const answered = new Set();
+  document.querySelectorAll('input[type=radio]:checked').forEach(r => answered.add(r.name));
+  if (answered.size < 36) {
+    alert('請完成所有 36 題後再查看結果！');
+    return;
+  }
+
+  // 計算各體質原始分
+  const raw = {};
+  types.forEach(t => raw[t] = 0);
+  document.querySelectorAll('input[type=radio]:checked').forEach(r => {
+    const type = qMap[r.name];
+    raw[type] += parseInt(r.value);
+  });
+
+  // 轉換為百分制（每個體質4題，最低4分最高20分）
+  const scores = {};
+  types.forEach(t => {
+    scores[t] = Math.round((raw[t] - 4) / 16 * 100);
+  });
+
+  // 排序找最高
+  const sorted = types.slice().sort((a,b) => scores[b] - scores[a]);
+  const top = sorted[0];
+  const info = constitutions[top];
+
+  // 平和質判斷：平和質高且其他體質均低
+  let mainType = top;
+  if (top === 'pinghe' && scores['pinghe'] >= 60) {
+    const otherHigh = sorted.slice(1).some(t => scores[t] >= 40);
+    if (otherHigh) mainType = sorted[1]; // 兼夾
+  }
+
+  const mainInfo = constitutions[mainType];
+
+  // 顯示結果
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('result-section').style.display = 'block';
+
+  document.getElementById('result-badge').style.background = mainInfo.bg;
+  document.getElementById('result-badge').textContent = mainInfo.emoji;
+  document.getElementById('result-title').textContent = mainInfo.name;
+
+  // 兼夾體質說明
+  const secondary = sorted.filter(t => t !== mainType && scores[t] >= 40);
+  if (secondary.length > 0) {
+    document.getElementById('result-subtitle').textContent = '兼夾體質：' + secondary.map(t => constitutions[t].name).join('、');
+  } else {
+    document.getElementById('result-subtitle').textContent = '你的體質傾向較為明確';
+  }
+
+  // 分數列表
+  const scoreHTML = sorted.map((t, i) => {
+    const s = scores[t];
+    const c = constitutions[t];
+    const isTop = t === mainType;
+    return `<div class="score-item ${isTop?'top':''}">
+      <span class="score-emoji">${c.emoji}</span>
+      <span class="score-name">${c.name}</span>
+      <div class="score-bar-wrap">
+        <div class="score-bar-bg"><div class="score-bar-fill ${isTop?'top-fill':''}" style="width:${s}%"></div></div>
+      </div>
+      <span class="score-num">${s}分</span>
+    </div>`;
+  }).join('');
+  document.getElementById('score-list').innerHTML = scoreHTML;
+
+  // 體質說明
+  document.getElementById('result-desc').innerHTML = `
+    <h3>${mainInfo.emoji} 關於${mainInfo.name}</h3>
+    <p>${mainInfo.desc}</p>
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.getElementById('quiz-section').style.display = 'block';
+  document.getElementById('result-section').style.display = 'none';
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
